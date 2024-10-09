@@ -1,4 +1,4 @@
-﻿namespace Eventity.Moudules.Events.Api.Events
+﻿namespace Evently.Modules.Events.Application.Events.GetEvent
 {
     public sealed record EventResponse(
         Guid Id,
@@ -6,6 +6,6 @@
         string Description,
         string Location,
         DateTime StartsAtUtc,
-        DateTime? EndAtUtc
+        DateTime? EndsAtUtc
     );
 }

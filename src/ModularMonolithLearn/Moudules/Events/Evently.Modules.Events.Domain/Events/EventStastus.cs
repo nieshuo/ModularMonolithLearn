@@ -1,4 +1,4 @@
-﻿namespace Eventity.Moudules.Events.Api.Events
+﻿namespace Eventity.Moudules.Events.Domain.Events
 {
     public enum EventStastus
     {

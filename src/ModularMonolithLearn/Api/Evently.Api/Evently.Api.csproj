@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Moudules\Events\Eventity.Moudules.Events.Api\Eventity.Moudules.Events.Api.csproj" />
+    <ProjectReference Include="..\..\Moudules\Events\Evently.Modules.Events.Infrastructure\Evently.Modules.Events.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

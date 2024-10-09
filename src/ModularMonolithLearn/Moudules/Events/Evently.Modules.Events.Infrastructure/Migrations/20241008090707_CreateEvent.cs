@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Eventity.Moudules.Events.Api.Migrations
+namespace Evently.Modules.Events.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class Create_Database : Migration
+    public partial class CreateEvent : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -24,7 +24,7 @@ namespace Eventity.Moudules.Events.Api.Migrations
                     Description = table.Column<string>(type: "text", nullable: false),
                     Location = table.Column<string>(type: "text", nullable: false),
                     StartsAtUtc = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    EndsAtUtc = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    EndsAtUtc = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     Status = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>

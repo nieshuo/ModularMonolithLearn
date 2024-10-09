@@ -13,7 +13,10 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Api/Evently.Api/Evently.Api.csproj", "Api/Evently.Api/"]
-COPY ["Moudules/Events/Eventity.Moudules.Events.Api/Eventity.Moudules.Events.Api.csproj", "Moudules/Events/Eventity.Moudules.Events.Api/"]
+COPY ["Moudules/Events/Evently.Modules.Events.Infrastructure/Evently.Modules.Events.Infrastructure.csproj", "Moudules/Events/Evently.Modules.Events.Infrastructure/"]
+COPY ["Moudules/Events/Evently.Modules.Events.Application/Evently.Modules.Events.Application.csproj", "Moudules/Events/Evently.Modules.Events.Application/"]
+COPY ["Moudules/Events/Evently.Modules.Events.Domain/Evently.Modules.Events.Domain.csproj", "Moudules/Events/Evently.Modules.Events.Domain/"]
+COPY ["Moudules/Events/Evently.Modules.Events.Presentation/Evently.Modules.Events.Presentation.csproj", "Moudules/Events/Evently.Modules.Events.Presentation/"]
 RUN dotnet restore "./Api/Evently.Api/Evently.Api.csproj"
 COPY . .
 WORKDIR "/src/Api/Evently.Api"

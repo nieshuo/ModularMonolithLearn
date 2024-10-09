@@ -1,4 +1,4 @@
-﻿namespace Eventity.Moudules.Events.Api
+﻿namespace Eventity.Moudules.Events.Presentation
 {
     internal static class Tags
     {
