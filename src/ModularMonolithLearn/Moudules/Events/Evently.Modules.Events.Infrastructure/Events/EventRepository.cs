@@ -1,6 +1,7 @@
 ﻿using Eventity.Moudules.Events.Domain.Events;
 using Evently.Modules.Events.Domain.Events;
 using Evently.Modules.Events.Infrastructure.Database;
+using Microsoft.EntityFrameworkCore;
 
 namespace Evently.Modules.Events.Infrastructure.Events
 {
@@ -9,6 +10,10 @@ namespace Evently.Modules.Events.Infrastructure.Events
         public void Insert(Event @event)
         {
             context.Events.Add(@event);
+        }
+        public async Task<Event?> GetAsync(Guid id, CancellationToken cancellationToken = default)
+        {
+            return await context.Events.SingleOrDefaultAsync(e => e.Id == id, cancellationToken);
         }
     }
 }

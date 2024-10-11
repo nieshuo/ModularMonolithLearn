@@ -1,6 +1,6 @@
 ﻿namespace Eventity.Moudules.Events.Domain.Events
 {
-    public enum EventStastus
+    public enum EventStatus
     {
         Draft = 0,
         Published = 1,

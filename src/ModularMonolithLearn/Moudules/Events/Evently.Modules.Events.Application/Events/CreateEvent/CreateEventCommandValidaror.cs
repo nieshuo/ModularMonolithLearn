@@ -6,6 +6,7 @@ namespace Evently.Modules.Events.Application.Events.CreateEvent
     {
         public CreateEventCommandValidaror()
         {
+            RuleFor(c => c.CategoryId).NotEmpty();
             RuleFor(x => x.Title).NotEmpty();
             RuleFor(x => x.Description).NotEmpty();
             RuleFor(x => x.Location).NotEmpty();
