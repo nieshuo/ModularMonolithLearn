@@ -1,6 +1,6 @@
-﻿using Evently.Modules.Events.Domain.Abstractions;
+﻿using Evently.Common.Domain;
 
-namespace Evently.Modules.Events.Application.Abstractions.Messaging
+namespace Evently.Common.Application.Messaging
 {
     public abstract class DomainEventHandler<TDomainEvent> : IDomainEventHandler<TDomainEvent>
     where TDomainEvent : IDomainEvent

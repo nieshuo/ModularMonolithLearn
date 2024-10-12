@@ -1,7 +1,7 @@
 ﻿using Dapper;
-using Evently.Modules.Events.Application.Abstractions.Data;
-using Evently.Modules.Events.Application.Abstractions.Messaging;
-using Evently.Modules.Events.Domain.Abstractions;
+using Evently.Common.Application.Data;
+using Evently.Common.Application.Messaging;
+using Evently.Common.Domain;
 using System.Data.Common;
 
 namespace Evently.Modules.Events.Application.Events.GetEvents

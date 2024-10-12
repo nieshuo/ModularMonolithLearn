@@ -1,5 +1,5 @@
 ﻿using Eventity.Moudules.Events.Domain.Events;
-using Evently.Modules.Events.Application.Abstractions.Data;
+using Evently.Common.Application.Data;
 using Evently.Modules.Events.Domain.Categories;
 using Evently.Modules.Events.Domain.TicketTypes;
 using Evently.Modules.Events.Infrastructure.Events;

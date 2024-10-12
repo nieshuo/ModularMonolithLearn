@@ -1,6 +1,6 @@
 ﻿using Eventity.Moudules.Events.Presentation;
 using Evently.Modules.Events.Application.TicketTypes.GetTicketType;
-using Evently.Modules.Events.Domain.Abstractions;
+using Evently.Common.Domain;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
