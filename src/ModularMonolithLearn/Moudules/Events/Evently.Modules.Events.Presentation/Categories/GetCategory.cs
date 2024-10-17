@@ -5,18 +5,20 @@ using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
+using Evently.Common.Presentation.Results;
+using Evently.Common.Presentation.Endpoints;
 
 namespace Evently.Modules.Events.Presentation.Categories
 {
-    public static class GetCategory
+    internal class GetCategory:IEndpoint
     {
-        public static void MapEndpoint(IEndpointRouteBuilder app)
+        public void MapEndpoint(IEndpointRouteBuilder app)
         {
             app.MapGet("categories/{id}", async (Guid id, ISender sender) =>
             {
                 Result<CategoryResponse> result = await sender.Send(new GetCategoryQuery(id));
 
-                return Results.Ok(result);
+                return result.Match(Results.Ok, ApiResults.Problem);
             })
             .WithTags(Tags.Categories);
         }

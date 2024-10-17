@@ -7,6 +7,7 @@ services:
       - ASPNETCORE_Kestrel__Certificates__Default__Password=1236
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
       - ConnectionStrings__Database=Server=evently.database;Port=5432;Database=evently;User Id=postgres;Password=postgres;Include Error Detail=true
+      - ConnectionStrings__Cache=evently.redis:6379
     depends_on:
       - evently.database
     ports:

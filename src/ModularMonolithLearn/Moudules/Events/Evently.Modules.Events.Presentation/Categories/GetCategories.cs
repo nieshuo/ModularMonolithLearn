@@ -6,18 +6,33 @@ using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
+using Evently.Common.Presentation.Results;
+using Evently.Common.Application.Caching;
+using Evently.Common.Presentation.Endpoints;
 
 namespace Evently.Modules.Events.Presentation.Categories
 {
-    public static class GetCategories
+    internal class GetCategories:IEndpoint
     {
-        public static void MapEndpoint(IEndpointRouteBuilder app)
+        public void MapEndpoint(IEndpointRouteBuilder app)
         {
-            app.MapGet("categories", async (ISender sender) =>
+            app.MapGet("categories", async (ISender sender, ICacheService cacheService) =>
             {
+                IReadOnlyCollection<CategoryResponse>? categories = await cacheService.GetAsync<IReadOnlyCollection<CategoryResponse>>("categories");
+
+                if (categories is not null)
+                {
+                    return Results.Ok(categories);
+                }
+
                 Result<IReadOnlyCollection<CategoryResponse>> result = await sender.Send(new GetCategoriesQuery());
 
-                return Results.Ok(result);
+                if (result.IsSuccess)
+                {
+                    await cacheService.SetAsync("categories", result.Value);
+                }
+
+                return result.Match(Results.Ok, ApiResults.Problem);
             })
             .WithTags(Tags.Categories);
         }

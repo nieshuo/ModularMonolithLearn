@@ -5,12 +5,14 @@ using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
+using Evently.Common.Presentation.Results;
+using Evently.Common.Presentation.Endpoints;
 
 namespace Eventity.Moudules.Events.Application.Events
 {
-    public static class CreateEvent
+    internal class CreateEvent:IEndpoint
     {
-        public static void MapEndpoint(IEndpointRouteBuilder app)
+        public void MapEndpoint(IEndpointRouteBuilder app)
         {
             app.MapPost("events", async (CreateEventRequest request,ISender sender) =>
             {
@@ -23,7 +25,7 @@ namespace Eventity.Moudules.Events.Application.Events
                     request.EndsAtUtc);
                 Result<Guid> result = await sender.Send(command);
 
-                return Results.Ok(result);
+                return result.Match(Results.Ok, ApiResults.Problem);
             })
             .WithTags(Tags.Events);
         }

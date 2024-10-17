@@ -14,9 +14,13 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Api/Evently.Api/Evently.Api.csproj", "Api/Evently.Api/"]
 COPY ["Moudules/Events/Evently.Modules.Events.Infrastructure/Evently.Modules.Events.Infrastructure.csproj", "Moudules/Events/Evently.Modules.Events.Infrastructure/"]
+COPY ["Common/Evently.Common.Infrastructure/Evently.Common.Infrastructure.csproj", "Common/Evently.Common.Infrastructure/"]
+COPY ["Common/Evently.Common.Application/Evently.Common.Application.csproj", "Common/Evently.Common.Application/"]
+COPY ["Common/Evently.Common.Domain/Evently.Common.Domain.csproj", "Common/Evently.Common.Domain/"]
 COPY ["Moudules/Events/Evently.Modules.Events.Application/Evently.Modules.Events.Application.csproj", "Moudules/Events/Evently.Modules.Events.Application/"]
 COPY ["Moudules/Events/Evently.Modules.Events.Domain/Evently.Modules.Events.Domain.csproj", "Moudules/Events/Evently.Modules.Events.Domain/"]
 COPY ["Moudules/Events/Evently.Modules.Events.Presentation/Evently.Modules.Events.Presentation.csproj", "Moudules/Events/Evently.Modules.Events.Presentation/"]
+COPY ["Common/Evently.Common.Presentation/Evently.Common.Presentation.csproj", "Common/Evently.Common.Presentation/"]
 RUN dotnet restore "./Api/Evently.Api/Evently.Api.csproj"
 COPY . .
 WORKDIR "/src/Api/Evently.Api"

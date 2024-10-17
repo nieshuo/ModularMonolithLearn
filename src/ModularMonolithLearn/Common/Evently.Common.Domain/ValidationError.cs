@@ -1,6 +1,4 @@
-﻿using Evently.Common.Domain;
-
-namespace Evently.Common.Domain
+﻿namespace Evently.Common.Domain
 {
     public sealed record ValidationError : Error
     {

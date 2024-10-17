@@ -5,12 +5,14 @@ using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
+using Evently.Common.Presentation.Results;
+using Evently.Common.Presentation.Endpoints;
 
 namespace Evently.Modules.Events.Presentation.Events
 {
-    public static class SearchEvents
+    internal class SearchEvents:IEndpoint
     {
-        public static void MapEndpoint(IEndpointRouteBuilder app)
+        public void MapEndpoint(IEndpointRouteBuilder app)
         {
 
             app.MapGet("events/search", async (
@@ -25,7 +27,7 @@ namespace Evently.Modules.Events.Presentation.Events
                 Result<SearchEventsResponse> result = await sender.Send(
                     new SearchEventsQuery(status,categoryId, startDate, endDate, page, pageSize));
 
-                return Results.Ok(result);
+                return result.Match(Results.Ok, ApiResults.Problem);
             })
             .WithTags(Tags.Events);
         }

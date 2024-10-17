@@ -6,19 +6,21 @@ using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
+using Evently.Common.Presentation.Results;
+using Evently.Common.Presentation.Endpoints;
 
 namespace Evently.Modules.Events.Presentation.TicketTypes
 {
-    public static class GetTicketTypes
+    internal class GetTicketTypes:IEndpoint
     {
-        public static void MapEndpoint(IEndpointRouteBuilder app)
+        public void MapEndpoint(IEndpointRouteBuilder app)
         {
             app.MapGet("ticket-types", async (Guid eventId, ISender sender) =>
             {
                 Result<IReadOnlyCollection<TicketTypeResponse>> result = await sender.Send(
                     new GetTicketTypesQuery(eventId));
 
-                return Results.Ok(result);
+                return result.Match(Results.Ok, ApiResults.Problem);
             })
             .WithTags(Tags.TicketTypes);
         }
